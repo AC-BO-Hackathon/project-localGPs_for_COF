@@ -1,16 +1,30 @@
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-7f7980b617ed060a017424585567c406b6ee15c891e84e1186181d67ecf80aa0.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=14492939)
-# Autograding Example: Python
-This example project is written in Python, and tested with pytest.
+Project 39 : Divide and Conquer : Local Gaussian Processes to design Covalent Organic Frameworks for Methane Deliverable Capacity
+----------------
 
-## The assignment
-The tests are failing right now because the method isn't outputting the correct string. Fixing this up will make the tests green.
+In this project, we explore the use of local 
+Gaussian Process models to accelerate materials 
+discovery when the search spaces are very large. 
+We evaluate the performance of the framework on a 
+covalent organic framework (COF) dataset that consists 
+of 69,840 2D and 3D COFs [1]. This dataset replicates 
+some real-world scenarios wherein the search space 
+to explore is very large. In this test, we used an
+initial training dataset of 680 points, i.e 10\% of 
+the total search space. These COF structures are 
+designed for methane storage and our optimization
+target here is the deliverable capacity 
+(v STP/v) of the COF structure. 
 
-## Setup command
+References:
 
-See `postCreateCommand` from [`devcontainer.json`](.devcontainer/devcontainer.json).
+[1] Deshwal, A.; Simon, C. M.; Doppa, J. R. Bayesian Optimization of Nanoporous Materials. Mol. Syst. Des. Eng. 2021, 6 (12), 1066–1086. https://doi.org/10.1039/D1ME00093D.
 
-## Run command
-`pytest`
+<hr>
 
-## Notes
-- pip's install path is not included in the PATH var by default, so without installing via `sudo -H`, pytest would be unaccessible.
+Authors
+----------------
+
+Contributors can be found [here](https://github.com/AC-BO-Hackathon/project-localGPs_for_COF/graphs/contributors).
+
+<hr>
+
