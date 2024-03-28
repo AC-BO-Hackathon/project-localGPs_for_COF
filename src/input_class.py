@@ -40,6 +40,7 @@ class inputs:
         self.input_path = input_path
         self.input_file = input_file
         self.filename   = self.input_path + self.input_file
+        self.data = data = pd.read_csv(self.filename)
 
     def read_inputs(self):
         '''
@@ -48,25 +49,33 @@ class inputs:
         input_path='.',
         input_file='properties.csv'
         '''     
-        data = pd.read_csv(self.filename)
-        descriptors = ['dimensions', 'bond type', 'void fraction [widom]', 'supercell volume [A^3]', 'density [kg/m^3]', 
-                       'heat desorption high P [kJ/mol]','absolute methane uptake high P [molec/unit cell]', 
-                       'absolute methane uptake high P [mol/kg]', 'excess methane uptake high P [molec/unit cell]',
-                       'excess methane uptake high P [mol/kg]', 'heat desorption low P [kJ/mol]', 
-                       'absolute methane uptake low P [molec/unit cell]', 
-                       'absolute methane uptake low P [mol/kg]', 
-                       'excess methane uptake low P [molec/unit cell]', 
-                       'excess methane uptake low P [mol/kg]', 'surface area [m^2/g]', 'linkerA', 'linkerB', 'net', 
-                       'cell_a [A]', 'cell_b [A]', 'cell_c [A]', 'alpha [deg]', 'beta [deg]', 'gamma [deg]', 
-                       'num carbon', 'num fluorine', 'num hydrogen', 'num nitrogen', 'num oxygen', 'num sulfur', 
-                       'num silicon', 'vertices', 'edges', 'genus', 'largest included sphere diameter [A]', 
-                       'largest free sphere diameter [A]', 'largest included sphere along free sphere path diameter [A]',
-                       'absolute methane uptake high P [v STP/v]', 'absolute methane uptake low P [v STP/v]]']
-        XX = pd.DataFrame(data, columns=descriptors)
-        target = copy.deepcopy(data['deliverable capacity [v STP/v]'].to_numpy())
+#         XX_comp = data.iloc[:,38:45]
+        descriptors = ['dimensions', ' bond type', ' void fraction [widom]', ' supercell volume [A^3]', ' density [kg/m^3]', 
+                       ' heat desorption high P [kJ/mol]',' absolute methane uptake high P [molec/unit cell]', 
+                       ' absolute methane uptake high P [mol/kg]', ' excess methane uptake high P [molec/unit cell]',
+                       ' excess methane uptake high P [mol/kg]', ' heat desorption low P [kJ/mol]', 
+                       ' absolute methane uptake low P [molec/unit cell]', 
+                       ' absolute methane uptake low P [mol/kg]', 
+                       ' excess methane uptake low P [molec/unit cell]', 
+                       ' excess methane uptake low P [mol/kg]', ' surface area [m^2/g]', ' linkerA', ' linkerB', ' net', 
+                       ' cell_a [A]', ' cell_b [A]', ' cell_c [A]', ' alpha [deg]', ' beta [deg]', ' gamma [deg]', 
+                       ' num carbon', ' num fluorine', ' num hydrogen', ' num nitrogen', ' num oxygen', ' num sulfur', 
+                       ' num silicon', ' vertices', ' edges', ' genus', ' largest included sphere diameter [A]', 
+                       ' largest free sphere diameter [A]', ' largest included sphere along free sphere path diameter [A]',
+                       ' absolute methane uptake high P [v STP/v]', ' absolute methane uptake low P [v STP/v]']
+        XX_prop = pd.DataFrame(self.data, columns=descriptors)
+        target = copy.deepcopy(self.data[' deliverable capacity [v STP/v]'].to_numpy())
         YY = target.reshape(-1,1)
 
-        return XX, YY, descriptors
+        return XX_prop, YY, descriptors
+    
+    def get_comp(self):
+        XX_comp_df = self.data.iloc[:,38:45]
+        YY = self.data.iloc[:, 27]
+        # YY_df = pd.DataFrame(YY)
+        # YY = copy.deepcopy(self.data[' deliverable capacity [v STP/v]'].to_numpy())
+        return XX_comp_df, YY
+
 
 
 if __name__=="__main__":

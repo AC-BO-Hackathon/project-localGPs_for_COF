@@ -60,28 +60,30 @@ def standardize_test_data(x,scalerX):
 
 def generate_training_data(random_state,test_size):
     
-    # Reading the input json file with dataset filename and path information
-    with open(model_input.run_folder+'inputs.json', "r") as f:
-        input_dict = json.load(f)
+    # todo: Modify below to read from code_inputs.py
+    # # Reading the input json file with dataset filename and path information
+    # with open(model_input.run_folder+'inputs.json', "r") as f:
+    #     input_dict = json.load(f)
 
-    input_type = input_dict['InputType']
-    input_path = input_dict['InputPath']
-    input_file = input_dict['InputFile']
-    add_target_noise = input_dict['AddTargetNoise']
+    # input_type = input_dict['InputType']
+    # input_path = input_dict['InputPath']
+    # input_file = input_dict['InputFile']
+    # add_target_noise = input_dict['AddTargetNoise']
+
+    # input = input_class.inputs(input_type=input_type,
+    #                            input_path=input_path,
+    #                            input_file=input_file,
+    #                            add_target_noise=add_target_noise)
     
-    input = input_class.inputs(input_type=input_type,
-                               input_path=input_path,
-                               input_file=input_file,
-                               add_target_noise=add_target_noise)
-    
-    XX, YY, descriptors = input.read_inputs(model_input.verbose)
+    input_obj = input_class.inputs()
+    XX, YY, descriptors = input_obj.read_inputs()
     
     # Transforming datasets by standardization
     if model_input.standardize_data:
         X_stand, scalerX_transform = utilsd.standardize_data(XX)
         Y_stand, scalerY_transform = utilsd.standardize_data(YY)
     else:
-        X_stand=XX.to_numpy()
+        X_stand = XX.to_numpy()
         Y_stand = YY
     
     # Checking if we should use xgboost recommended descriptors or all descriptors

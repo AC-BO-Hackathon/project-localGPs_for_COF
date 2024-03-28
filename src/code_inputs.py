@@ -30,11 +30,11 @@ np.random.seed(0)
 torch.manual_seed(0)
 
 # General inputs
-run_folder = '/Users/maitreyeesharma/WORKSPACE/PostDoc/EngChem/MatDisc_ML/python_notebook_bo/'  # Folder where code is run and input json exist
+run_folder = '/Users/nikhilthota/Desktop/lab/projects/SPIRAL/codes_and_datasets/T-NIKHIL/project-sparse-gp-for-materials-discovery'  # Folder where code is run and input json exist
 num_run = 3
 test_size = 0.01
-output_folder = run_folder+'../bo_output/' # Folder where all outputs are stored
-output_folder = output_folder+'Space@Hopkins_recommendations/mpea_hv_forEddie_'+str(test_size)+'p_ThirdPass_Mar5_24/'
+output_folder = run_folder+'/bo_output/' # Folder where all outputs are stored
+output_folder = output_folder+'test'
 verbose = True
 deep_verbose = False
 
