@@ -47,7 +47,7 @@ class ExactGPModel(gpytorch.models.ExactGP,GPyTorchModel):
         return gpytorch.distributions.MultivariateNormal(mean_x, covar_x)
             
 #--------------------------- GP-0 ---------------------------#
-def train_surrogate_gp0(saveModel_filename,test_size,num_nodes,X_train,Y_train):
+def train_surrogate_gp0(X_train,Y_train):
     
     mse_gp0 = 0.0 
     training_iter = model_input.epochs_GP0

@@ -35,7 +35,7 @@ plt.rcParams['legend.fontsize'] = 15
 
 
 class inputs:
-    def __init__(self,input_type='COF',input_path='.',input_file='properties.csv'):
+    def __init__(self,input_type='COF',input_path='../',input_file='properties.csv'):
         self.input_type = input_type
         self.input_path = input_path
         self.input_file = input_file
