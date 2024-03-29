@@ -36,9 +36,9 @@ class ExactGPModel(gpytorch.models.ExactGP,GPyTorchModel):
     def __init__(self, train_x, train_y, likelihood):
         super(ExactGPModel, self).__init__(train_x, train_y, likelihood)
         self.mean_module = gpytorch.means.ConstantMean()
-        if model_input.KERNEL=='RBF':
+        if model_input.kernel=='RBF':
             self.covar_module = gpytorch.kernels.ScaleKernel(gpytorch.kernels.RBFKernel())
-        elif model_input.KERNEL=='Matern':            
+        elif model_input.kernel=='Matern':            
             self.covar_module = gpytorch.kernels.ScaleKernel(gpytorch.kernels.MaternKernel(nu=0.5))
 
     def forward(self, x):
@@ -50,7 +50,7 @@ class ExactGPModel(gpytorch.models.ExactGP,GPyTorchModel):
 def train_surrogate_gp0(X_train,Y_train):
     
     mse_gp0 = 0.0 
-    training_iter = model_input.EPOCHS_GP0
+    training_iter = model_input.epochs_GP0
     
     # initialize likelihood and model
     likelihood_gp0 = gpytorch.likelihoods.GaussianLikelihood()
@@ -61,7 +61,7 @@ def train_surrogate_gp0(X_train,Y_train):
     likelihood_gp0.train()
 
     # Use the adam optimizer
-    optimizer = torch.optim.Adam(model_gp0.parameters(), lr=model_input.LR_GP0)  # Includes GaussianLikelihood parameters
+    optimizer = torch.optim.Adam(model_gp0.parameters(), lr=model_input.learning_rate_gp0)  # Includes GaussianLikelihood parameters
 
     # "Loss" for GPs - the marginal log likelihood
     mll = gpytorch.mlls.ExactMarginalLogLikelihood(likelihood_gp0, model_gp0)

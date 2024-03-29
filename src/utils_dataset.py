@@ -79,7 +79,7 @@ def generate_training_data(random_state,test_size):
     XX, YY, descriptors = input_obj.read_inputs()
     
     # Transforming datasets by standardization
-    if model_input.standardize_data:
+    if model_input.STANDARDIZE:
         X_stand, scalerX_transform = utilsd.standardize_data(XX)
         Y_stand, scalerY_transform = utilsd.standardize_data(YY)
     else:
@@ -89,16 +89,16 @@ def generate_training_data(random_state,test_size):
     # Checking if we should use xgboost recommended descriptors or all descriptors
     if model_input.select_features_otherModels:
         fs = feature_selection.feature_selection_algorithms(X_stand,Y_stand,
-                                                            test_size=model_input.test_size_fs,
+                                                            test_size=model_input.TEST_SIZE_FS,
                                                             random_state=random_state)
         xg_boost_descriptors = fs.selected_features_xgboost(descriptors)
-        if model_input.verbose:
+        if model_input.VERBOSE:
             print('Selected Features, ', xg_boost_descriptors)
     else:
         xg_boost_descriptors = descriptors
       
     XX = pd.DataFrame(XX, columns=xg_boost_descriptors)
-    if model_input.standardize_data:
+    if model_input.STANDARDIZE:
         X_stand, scalerX_transform = utilsd.standardize_data(XX)
     else:
         X_stand=XX.to_numpy()
@@ -120,7 +120,7 @@ def generate_training_data(random_state,test_size):
     Y_test = np.transpose(Y_test) # Ytrain has to have only one row for GP training
     Y_test = torch.tensor(Y_test).to(torch.float32)
     
-    if model_input.standardize_data:
+    if model_input.STANDARDIZE:
         return X_train, X_test, Y_train, Y_test, Var_train, Var_test, scalerX_transform, scalerY_transform
     else:
         return X_train, X_test, Y_train, Y_test, Var_train, Var_test
