@@ -9,9 +9,12 @@ RUN_FOLDER = os.path.dirname(os.getcwd())
 TEST_SIZE = 0.95
 # Output folder name
 OUT_FOLDER = RUN_FOLDER+'/bo_output/'
-OUT_FOLDER = OUT_FOLDER+'test_with_cluster/'
+# OUT_FOLDER = OUT_FOLDER+'results_with_three_clusters/'
+OUT_FOLDER = OUT_FOLDER+'results_with_three_clusters/'
 VERBOSE = True
 DEEP_VERBOSE = False
+# Initial search before epsilon greedy search train GPs in parallel ?
+TRAIN_PARALLEL = False
 
 # Reading and data processing inputs
 ADD_TARGET_NOISE = False
@@ -28,13 +31,15 @@ RANDOM_SEED = 'time'
 MAXIMIZATION = True
 NEW_VALUES_PREDICT_FROM_MODEL = False
 # Number of trials to perform BO from scratch
-N_TRIALS = 1
+N_TRIALS = 10
 # Number of experiments performed in each trial
-N_BATCH_PER_TRIAL = 1
+N_BATCH_PER_TRIAL = 300
 # Number of iterations after which the model is updated
-N_UPDATE = 1
-# Number of times to perform epsilon greedy search. N_BATCH_PER_TRIAL/N_SEARCH must be an integer
-N_SEARCH = 1
+N_UPDATE = 10
+# Number of times to perform search. 
+# If N_SEARCH is set to 1 then only the initial search is performed
+# If N_SEARCH is set to > 1 then only the epsilon greedy search is performed
+N_SEARCH = 6
 # Epsilon greedy search parameter
 EPSILON = 0.1
 # Select the GP surrogate to train
