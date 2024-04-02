@@ -1,6 +1,19 @@
 Project 39 : Divide and Conquer : Local Gaussian Processes to design Covalent Organic Frameworks for Methane Deliverable Capacity
 ----------------
 
+Authors
+----------------
+
+1. Nikhil Kumar Thota (Johns Hopkins University) (https://github.com/T-NIKHIL)
+2. Maitreyee Sharma Priyadarshini (Johns Hopkins University) (https://github.com/msharmap)
+3. Yiran (Gigi) Wang (Johns Hopkins University) (https://github.com/gigiwang08)
+4. Jarett Ren (Johns Hopkins University) (https://github.com/jren0))
+
+<hr>
+
+Method
+----------------
+
 In this project, we explore the use of local 
 Gaussian Process models to accelerate materials 
 discovery when the search spaces are very large. 
@@ -42,10 +55,11 @@ be done with a standard global GP model.
 
 ![Image not found](schematic.pdf "Workflow of training local GP models")
 
+What to know more click [here](https://youtu.be/iog-07Ekp9g)
+
 References
 
 [1] Mercado, R.; Fu, R.-S.; Yakutovich, A. V.; Talirz, L.; Haranczyk, M.; Smit, B. In Silico Design of 2D and 3D Covalent Organic Frameworks for Methane Storage Applications. Chem. Mater. 2018, 30 (15), 5069–5086. https://doi.org/10.1021/acs.chemmater.8b01425.
-
 
 <hr>
 
@@ -63,10 +77,4 @@ Type the following command in the terminal : conda env create -f bo-hackathon.ym
 
 5. The results from training the model are located under bo_output
 
-Authors
-----------------
-
-Contributors can be found [here](https://github.com/AC-BO-Hackathon/project-localGPs_for_COF/graphs/contributors).
-
 <hr>
-
