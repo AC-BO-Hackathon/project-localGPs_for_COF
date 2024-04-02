@@ -1,15 +1,80 @@
-# Autograding Example: Python
-This example project is written in Python, and tested with pytest.
+Project 39 : Divide and Conquer : Local Gaussian Processes to design Covalent Organic Frameworks for Methane Deliverable Capacity
+----------------
 
-## The assignment
-The tests are failing right now because the method isn't outputting the correct string. Fixing this up will make the tests green.
+Authors
+----------------
 
-## Setup command
+1. Nikhil Kumar Thota (Johns Hopkins University) (https://github.com/T-NIKHIL)
+2. Maitreyee Sharma Priyadarshini (Johns Hopkins University) (https://github.com/msharmap)
+3. Yiran (Gigi) Wang (Johns Hopkins University) (https://github.com/gigiwang08)
+4. Jarett Ren (Johns Hopkins University) (https://github.com/jren0))
 
-See `postCreateCommand` from [`devcontainer.json`](.devcontainer/devcontainer.json).
+<hr>
 
-## Run command
-`pytest`
+Method
+----------------
 
-## Notes
-- pip's install path is not included in the PATH var by default, so without installing via `sudo -H`, pytest would be unaccessible.
+In this project, we explore the use of local 
+Gaussian Process models to accelerate materials 
+discovery when the search spaces are very large. 
+We evaluate the performance of the framework on a 
+covalent organic framework (COF) dataset that consists 
+of 69,840 2D and 3D COFs [1]. This dataset replicates 
+some real-world scenarios wherein the search space 
+to explore is very large. In this test, we used an
+initial training dataset comprising 5\% of 
+the total search space. These COF structures are 
+designed for methane storage and our optimization
+target here is the deliverable capacity 
+(v STP/v) of the COF structure. We employ
+gaussian process surrogates with zero prior mean
+function and Matern kernel as the covariance
+function.
+
+Gaussian Process (GP) has been a popular choice of 
+surrogate model in Bayesian Optimization due to its
+flexibility and uncertainty quantification. However,
+training a Gaussian Process involves several matrix
+inversions, which can dramatically scale up the computational
+cost as more data is obtained via Bayesian Optimization. 
+Gaussian Process has a runtime complexity of $O(n^3)$, 
+where n is the number of training samples. Given its poor scalability,
+the application of GPs to high-dimensional problems 
+with several thousand observations remains challenging. 
+In this project, we aim to reduce the computational cost 
+of GP-based Bayesian Optimization by breaking a global GP 
+model into several local GP models. These local GP models 
+will run in parallel, accelerating the optimization problem.
+We have also designed a new acquisition function to aggregate 
+predictions from local GPs and select the next points to explore
+with a tunable parameter to adjust exploration vs. exploitation.
+We hypothesize that our method will significantly accelerate 
+the runtime of Bayesian Optimization, and enable us to explore 
+more points in the COFs dataset which cannot 
+be done with a standard global GP model.
+
+![Image not found](schematic.pdf "Workflow of training local GP models")
+
+What to know more click [here](https://youtu.be/iog-07Ekp9g)
+
+References
+
+[1] Mercado, R.; Fu, R.-S.; Yakutovich, A. V.; Talirz, L.; Haranczyk, M.; Smit, B. In Silico Design of 2D and 3D Covalent Organic Frameworks for Methane Storage Applications. Chem. Mater. 2018, 30 (15), 5069–5086. https://doi.org/10.1021/acs.chemmater.8b01425.
+
+<hr>
+
+User guide
+----------------
+
+1. Install the conda environment bo-hackathon from the bo-hackathon.yml file.
+Type the following command in the terminal : conda env create -f bo-hackathon.yml
+
+2. The inputs to the code must be provided in code_inputs.py
+
+3. The jupyter notebook for running the code is located under src/BO.ipynb
+
+4. The dataset for training the model is located under data/properties.csv
+
+5. The results from training the model are located under bo_output
+
+<hr>
